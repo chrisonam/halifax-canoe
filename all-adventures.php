@@ -1,4 +1,7 @@
 <?php 
+    include('./pages/db_connect.php');
+
+
      include('./pages/header.php');
 ?>
 
@@ -12,34 +15,32 @@
                 <h1>Upcoming Adventures</h1>
             </div>
 
+            <?php
+    // select query 
+       $query="SELECT * FROM `adventures`";
+       $result= mysqli_query($connex,$query);
+       while($row = mysqli_fetch_assoc($result)){
+        ?>
             <article>
-                <h2>Halifax</h2>
-            <div class="info">
-                <p><span>Date:</span> 02/25/2023 </p>
-                <p> <span> Duration:</span> 2 Days </p>
-            </div>
-            <div class="summary">
-                <h3>Summary</h3>
-                <p>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus quis deleniti optio repellat eveniet sunt, impedit libero. Ullam vero consectetur, libero minima accusantium id quia repudiandae. Repellat temporibus voluptatibus fugiat?
-                </p>
-            </div>
+                    <h2><?php echo $row['heading'] ?></h2>
+                    <div class="info">
+                    <p><span>Date:</span><?php echo $row['tripDate'] ?></p>
+                    <p> <span> Duration:</span> <?php echo $row['duration']?> Days </p>
+                    </div>
+                    <div class="summary">
+                     <h3>Summary</h3>
+                     <p>
+                      <?php echo $row['summary']?>
+                    </p>
+                    </div>
             </article>
+        
+       
 
-            <article>
-                <h2>Sydney</h2>
-            <div class="info">
-                <p><span>Date:</span> 03/05/2023 </p>
-                <p> <span> Duration:</span> 4 days </p>
-            </div>
-            <div class="summary">
-                <h3>Summary</h3>
-                <p>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus quis deleniti optio repellat eveniet sunt, impedit libero. Ullam vero consectetur, libero minima accusantium id quia repudiandae. Repellat temporibus voluptatibus fugiat?
-                </p>
-            </div>
-            </article>
-            
+        <?php
+       }
+         ?>
+
         </section>
     </main>
 
